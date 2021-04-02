@@ -146,7 +146,7 @@ function RFilter (input) {
     this.literalNames = literalNames;
     this.symbolicNames = symbolicNames;
 
-	this.curlies = 0;
+	    this.curlies = 0;
 
     return this;
 }
@@ -472,7 +472,7 @@ RFilter.prototype.eat = function() {
         	case 1:
         		this.state = 20;
         		localctx._NL = this.match(RFilter.NL);
-        		((WritableToken)localctx._NL).setChannel(Token.HIDDEN_CHANNEL);
+        		localctx._NL.setChannel(Token.HIDDEN_CHANNEL)
         		break;
         	default:
         		throw new antlr4.error.NoViableAltException(this);
@@ -661,7 +661,7 @@ RFilter.prototype.elem = function() {
                 this.eat();
 
             }
-            this.curlies++;
+            curlies++;
             this.state = 41;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
@@ -741,7 +741,7 @@ RFilter.prototype.elem = function() {
                 this._errHandler.sync(this);
                 _la = this._input.LA(1);
             }
-            this.curlies--;
+            curlies--;
             this.state = 45;
             this.match(RFilter.T__36);
             break;
@@ -1417,7 +1417,7 @@ RFilter.prototype.elem = function() {
                           else print(2)
                         }
                     */
-                    WritableToken tok = (WritableToken)_input.LT(-2);
+                    tok = _input.LT(-2);
                     if (this.curlies>0&&tok.getType()==NL) tok.setChannel(Token.HIDDEN_CHANNEL);
                     
             break;

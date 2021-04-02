@@ -35,13 +35,13 @@ parser grammar RFilter;
 options { tokenVocab=R; }
 
 @members {
-protected int curlies = 0;
+    this.curlies = 0;
 }
 
 // TODO: MAKE THIS GET ONE COMMAND ONLY
 stream : (elem|NL|';')* EOF ;
 
-eat :   (NL {((WritableToken)$NL).setChannel(Token.HIDDEN_CHANNEL);})+ ;
+eat :   (NL {$NL.setChannel(Token.HIDDEN_CHANNEL)})+ ;
 
 elem:   op eat?
     |   atom
@@ -74,8 +74,8 @@ elem:   op eat?
               else print(2)
             }
         */
-        WritableToken tok = (WritableToken)_input.LT(-2);
-        if (curlies>0&&tok.getType()==NL) tok.setChannel(Token.HIDDEN_CHANNEL);
+        tok = _input.LT(-2);
+        if (this.curlies>0&&tok.getType()==NL) tok.setChannel(Token.HIDDEN_CHANNEL);
         }
     ;
 
